@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { handleAddQuestion } from "../actions/polls";
 
 const NewPoll = ({ dispatch }) => {
   const [firstChoice, setFirstChoice] = useState("");
@@ -19,7 +20,7 @@ const NewPoll = ({ dispatch }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: dispatch action to create new poll
+    dispatch(handleAddQuestion(firstChoice, secondChoice));
     navigate("/");
   };
   return (
@@ -46,6 +47,4 @@ const NewPoll = ({ dispatch }) => {
   );
 };
 
-const mapStateToProps = ({}) => ({});
-
-export default connect(mapStateToProps)(NewPoll);
+export default connect()(NewPoll);
