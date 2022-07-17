@@ -1,9 +1,8 @@
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 
-const PollPage = ({ users, questions }) => {
-  const { id } = useParams();
-  const { question, user } = initRequiredData(id, questions, users);
+const PollPage = ({ user, question }) => {
+
 
   return (
     <div>
@@ -32,6 +31,15 @@ const initRequiredData = (users, questions, questionId) => {
     }
 }
 
-const mapStateToProps = ({}) => ({});
+const mapStateToProps = ({users, questions}) => {
+    try {
+        const question =  Object.values(questions).find((question) => question.id === useParams().id);
+        const author = question.author;
+        const user = Object.values(users).find((user) => user.id === author);
+        return { question, user };
+    } catch (error) {
+        throw new Error(`Question or user not found. ${error}`);
+    }
+};
 
 export default connect(mapStateToProps)(PollPage);
