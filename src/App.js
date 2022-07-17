@@ -10,14 +10,14 @@ import { connect } from "react-redux";
 import { handleInitialData } from "./actions/shared";
 import "./App.css";
 
-function App(props) {
+function App({ dispatch, loggedIn }) {
   useEffect(() => {
-    props.dispatch(handleInitialData());
+    dispatch(handleInitialData());
   }, []);
 
   return (
     <div className="app__container">
-      {!props.loggedIn ? (
+      {!loggedIn ? (
         <Login />
       ) : (
         <>
