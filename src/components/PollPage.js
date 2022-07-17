@@ -34,12 +34,18 @@ const PollPage = ({ dispatch, authedUser, author, question }) => {
 
       <div className={votedForOptionOne ? "chosen" : ""}>
         <p>{question.firstChoice.text}</p>
-        <button onClick={handleFirstChoice} disabled={hasVoted}>Click</button>
+        <button onClick={handleFirstChoice} disabled={hasVoted}>
+          Click
+        </button>
+        {hasVoted ? <p>Votes: {question.optionOne.votes.length}</p> : null}
       </div>
 
       <div className={votedForOptionTwo ? "chosen" : ""}>
         <p>{question.secondChoice.text}</p>
-        <button onClick={handleSecondChoice} disabled={hasVoted}>Click</button>
+        <button onClick={handleSecondChoice} disabled={hasVoted}>
+          Click
+        </button>
+        {hasVoted ? <p>Votes: {question.optionTwo.votes.length}</p> : null}
       </div>
     </div>
   );
@@ -50,7 +56,9 @@ const mapStateToProps = ({ authedUser, users, questions }) => {
     const question = Object.values(questions).find(
       (question) => question.id === useParams().id
     );
-    const author = Object.values(users).find((user) => user.id === question.author);
+    const author = Object.values(users).find(
+      (user) => user.id === question.author
+    );
     return { authedUser, author, question };
   } catch (error) {
     throw new Error(`Question or user not found. ${error}`);
