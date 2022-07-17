@@ -22,6 +22,8 @@ const Nav = (props) => {
   );
 };
 
-const mapStateToProps = ({}) => ({});
+const mapStateToProps = ({authedUser}) => ({
+    authedUserId: authedUser.id,
+});
 
 export default connect(mapStateToProps)(Nav);
