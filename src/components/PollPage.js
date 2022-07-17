@@ -21,6 +21,20 @@ const PollPage = ({ dispatch, authedUser, author, question }) => {
   const votedForOptionTwo = question.optionTwo.votes.includes(authedUser.id);
   const hasVoted = votedForOptionOne || votedForOptionTwo;
 
+  const votePercentage = (option, question) => {
+    const totalVotes =
+      question.optionOne.votes.length + question.optionTwovotes.length;
+
+    switch (option) {
+      case "optionOne":
+        return (question.optionOne.votes.length / totalVotes) * 100 + " %";
+      case "optionTwo":
+        return (question.optionTwo.votes.length / totalVotes) * 100 + " %";
+      default:
+        return "";
+    }
+  };
+
   return (
     <div>
       <h1>Poll by {author.id}</h1>
@@ -37,7 +51,7 @@ const PollPage = ({ dispatch, authedUser, author, question }) => {
         <button onClick={handleFirstChoice} disabled={hasVoted}>
           Click
         </button>
-        {hasVoted ? <p>Votes: {question.optionOne.votes.length}</p> : null}
+        {hasVoted ? <p>Votes: {question.optionOne.votes.length} ({votePercentage("optionOne", question)})</p> : null}
       </div>
 
       <div className={votedForOptionTwo ? "chosen" : ""}>
@@ -45,7 +59,7 @@ const PollPage = ({ dispatch, authedUser, author, question }) => {
         <button onClick={handleSecondChoice} disabled={hasVoted}>
           Click
         </button>
-        {hasVoted ? <p>Votes: {question.optionTwo.votes.length}</p> : null}
+        {hasVoted ? <p>Votes: {question.optionTwo.votes.length} ({votePercentage("optionTwo", question)})</p> : null}
       </div>
     </div>
   );
