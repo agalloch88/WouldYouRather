@@ -1,6 +1,7 @@
 import { saveQuestion } from "../util/api";
 
 export const ADD_QUESTION = "ADD_QUESTION";
+export const GET_QUESTIONS = "GET_QUESTIONS";
 
 function addQuestion(question) {
   return {
@@ -16,5 +17,12 @@ export function handleAddQuestion(firstChoice, secondChoice) {
     return saveQuestion(firstChoice, secondChoice, authedUser).then(
       (question) => dispatch(addQuestion(question))
     );
+  };
+}
+
+export function getQuestions(questions) {
+  return {
+    type: GET_QUESTIONS,
+    questions,
   };
 }
