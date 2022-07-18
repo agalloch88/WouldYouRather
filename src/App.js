@@ -47,7 +47,7 @@ function App({ dispatch, loggedIn }) {
           }
         />
         <Route
-          path="/new"
+          path="/add"
           exact
           element={
             <ProtectedRoute>

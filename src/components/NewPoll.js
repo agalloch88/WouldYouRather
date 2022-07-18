@@ -25,7 +25,7 @@ const NewPoll = ({ dispatch }) => {
   };
   return (
     <div>
-      <h1 className="text-3xl font-bold mt-9">New Poll</h1>
+      <h1 className="text-3xl font-bold mt-9">Would You Rather...</h1>
       <form onSubmit={handleSubmit}>
         <div className="mt-3">
           <label

@@ -9,7 +9,7 @@ Object {
         <h1
           class="text-3xl font-bold mt-9"
         >
-          New Poll
+          Would You Rather...
         </h1>
         <form>
           <div
@@ -76,7 +76,7 @@ Object {
       <h1
         class="text-3xl font-bold mt-9"
       >
-        New Poll
+        Would You Rather...
       </h1>
       <form>
         <div
