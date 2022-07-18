@@ -23,7 +23,7 @@ const PollPage = ({ dispatch, authedUser, author, question }) => {
 
   const votePercentage = (option, question) => {
     const totalVotes =
-      question.optionOne.votes.length + question.optionTwovotes.length;
+      question.optionOne.votes.length + question.optionTwo.votes.length;
 
     switch (option) {
       case "optionOne":
@@ -37,29 +37,62 @@ const PollPage = ({ dispatch, authedUser, author, question }) => {
 
   return (
     <div>
-      <h1>Poll by {author.id}</h1>
-      <img
-        src={author.avatarURL}
-        alt={`Profile of ${author.name}`}
-        className="avatar"
-      />
-
-      <h2>Would you rather...</h2>
-
-      <div className={votedForOptionOne ? "chosen" : ""}>
-        <p>{question.firstChoice.text}</p>
-        <button onClick={handleFirstChoice} disabled={hasVoted}>
-          Click
-        </button>
-        {hasVoted ? <p>Votes: {question.optionOne.votes.length} ({votePercentage("optionOne", question)})</p> : null}
+      <h1 className="text-3xl font-bold mt-9">Poll by {author.id}</h1>
+      <div className="flex justify-center">
+        <img
+          src={author.avatarURL}
+          alt={`Profile of ${author.name}`}
+          className="h-24 w-24"
+        />
       </div>
 
-      <div className={votedForOptionTwo ? "chosen" : ""}>
-        <p>{question.secondChoice.text}</p>
-        <button onClick={handleSecondChoice} disabled={hasVoted}>
-          Click
+      <div className="flex justify-center">
+        <h2 className="text-2xl font-bold mt-6">Would you rather...</h2>
+      </div>
+
+      <div className="grid grid-cols-2 gap-4 mt-4">
+        <button
+          onClick={handleFirstChoice}
+          disabled={hasVoted}
+          className={
+            "p-2 rounded-xl bg-zinc-100 hover:shadow-xl transition " +
+            (votedForOptionOne ? "bg-lime-400" : "")
+          }
+        >
+          <div className={votedForOptionOne ? "chosen" : ""}>
+            <p className="font-bold mb-2">{question.optionOne.text}</p>
+            {!hasVoted && (
+              <p className="underline underline-offset-4 mb-3">Click</p>
+            )}
+            {hasVoted && (
+              <p>
+                Votes: {question.optionOne.votes.length} (
+                {votePercentage("optionOne", question)})
+              </p>
+            )}
+          </div>
         </button>
-        {hasVoted ? <p>Votes: {question.optionTwo.votes.length} ({votePercentage("optionTwo", question)})</p> : null}
+        <button
+          onClick={handleSecondChoice}
+          disabled={hasVoted}
+          className={
+            "p-2 rounded-xl bg-zinc-100 hover:shadow-xl transition " +
+            (votedForOptionTwo ? "bg-lime-400" : "")
+          }
+        >
+          <div className={votedForOptionTwo ? "chosen" : ""}>
+            <p className="font-bold mb-2">{question.optionTwo.text}</p>
+            {!hasVoted && (
+              <p className="underline underline-offset-4 mb-3">Click</p>
+            )}
+            {hasVoted && (
+              <p>
+                Votes: {question.optionTwo.votes.length} (
+                {votePercentage("optionTwo", question)})
+              </p>
+            )}
+          </div>
+        </button>
       </div>
     </div>
   );
