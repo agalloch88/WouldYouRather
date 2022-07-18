@@ -29,7 +29,7 @@ const Nav = ({ dispatch, authedUserId }) => {
         New Poll
       </Link>
       <span className="font-medium px-3 py-2 text-slate-700" data-testid="user">
-       Current Signed In as: {authedUserId}
+       Currently Signed In as: {authedUserId}
       </span>
       <button
         onClick={logout}

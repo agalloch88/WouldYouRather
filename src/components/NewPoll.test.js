@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { store } from "../store";
 import { BrowserRouter } from "react-router-dom";
@@ -7,7 +7,7 @@ import NewPoll from "./NewPoll";
 
 describe("NewPoll", () => {
   it("should render the component", () => {
-    const { component } = render(
+    const component = render(
       <Provider store={store}>
         <BrowserRouter>
           <NewPoll />
@@ -19,7 +19,7 @@ describe("NewPoll", () => {
   });
 
   it("should display all elements", () => {
-    const { component } = render(
+    const component = render(
       <Provider store={store}>
         <BrowserRouter>
           <NewPoll />
@@ -27,21 +27,21 @@ describe("NewPoll", () => {
       </Provider>
     );
 
-    const firstOptionLabelElement = component.screen.getByTestId("firstChoiceLabel");
-    const firstOptionInputElement = component.screen.getByTestId("firstChoice");
-    const secondOptionLabelElement = component.screen.getByTestId("secondChoiceLabel");
-    const secondOptionInputElement = component.screen.getByTestId("secondChoice");
-    const submitButtonElement = component.screen.getByTestId("submit");
+    const firstChoiceLabelElement = component.getByTestId("firstChoiceLabel");
+    const firstChoiceInputElement = component.getByTestId("firstChoice");
+    const secondChoiceLabelElement = component.getByTestId("secondChoiceLabel");
+    const secondChoiceInputElement = component.getByTestId("secondChoice");
+    const submitButtonElement = component.getByTestId("submit");
 
-    expect(firstOptionLabelElement.textContent).toBe("First Choice");
-    expect(secondOptionLabelElement.textContent).toBe("Second Choice");
+    expect(firstChoiceLabelElement.textContent).toBe("First Choice");
+    expect(secondChoiceLabelElement.textContent).toBe("Second Choice");
     expect(submitButtonElement.textContent).toBe("Submit");
 
-    fireEvent.change(firstOptionInputElement, { target: { value: "Texas" } });
-    fireEvent.change(secondOptionInputElement, {
+    fireEvent.change(firstChoiceInputElement, { target: { value: "Texas" } });
+    fireEvent.change(secondChoiceInputElement, {
       target: { value: "North Carolina" },
     });
-    expect(firstOptionInputElement.value).toBe("Texas");
-    expect(secondOptionInputElement.value).toBe("North Carolina");
+    expect(firstChoiceInputElement.value).toBe("Texas");
+    expect(secondChoiceInputElement.value).toBe("North Carolina");
   });
 });

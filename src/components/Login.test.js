@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { store } from "../store";
 import { BrowserRouter } from "react-router-dom";
@@ -8,7 +8,7 @@ import { handleInitialData } from "../actions/shared";
 
 describe("Login", () => {
   it("should render the component", () => {
-    const { component } = render(
+    const component = render(
       <Provider store={store}>
         <BrowserRouter>
           <Login />
@@ -19,10 +19,10 @@ describe("Login", () => {
     expect(component).toMatchSnapshot();
   });
 
-  it("should clear input fields after submitting", async () => {
+  it("should clear input elements after clicking submit button", async () => {
     await store.dispatch(handleInitialData());
 
-    const { wrapper } = render(
+    const wrapper = render(
       <Provider store={store}>
         <BrowserRouter>
           <Login />
@@ -30,10 +30,10 @@ describe("Login", () => {
       </Provider>
     );
 
-    const loginHeadingElement = wrapper.screen.getByTestId("login-heading");
-    const usernameInputElement = wrapper.screen.getByTestId("username");
-    const passwordInputElement = wrapper.screen.getByTestId("password");
-    const submitButtonElement = wrapper.screen.getByTestId("submit");
+    const loginHeadingElement = wrapper.getByTestId("login-heading");
+    const usernameInputElement = wrapper.getByTestId("username");
+    const passwordInputElement = wrapper.getByTestId("password");
+    const submitButtonElement = wrapper.getByTestId("submit");
     expect(loginHeadingElement).toBeInTheDocument();
     expect(usernameInputElement).toBeInTheDocument();
     expect(passwordInputElement).toBeInTheDocument();
