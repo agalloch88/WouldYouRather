@@ -22,8 +22,7 @@ export function handleLogin(username, password) {
       (user) => user.id === username && user.password === password
     );
 
-    if (user) {
-      sessionStorage.setItem("authedUser", JSON.stringify(user));
+    if (!!user) {
       return dispatch(setAuthedUser(user));
     }
   };
@@ -31,7 +30,6 @@ export function handleLogin(username, password) {
 
 export function handleLogout() {
   return (dispatch) => {
-    sessionStorage.removeItem("authedUser");
     return dispatch(logoutAuthedUser());
   };
 }
