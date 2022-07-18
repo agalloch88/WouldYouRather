@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { handleAddQuestion } from "../actions/polls";
+import { handleAddQuestion } from "../actions/questions";
 
 const NewPoll = ({ dispatch }) => {
   const [firstChoice, setFirstChoice] = useState("");

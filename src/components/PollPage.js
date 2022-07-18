@@ -1,19 +1,23 @@
 import { connect } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
-import { handleAddQuestionAnswer } from "../actions/polls";
+import { useParams, useNavigate, Navigate } from "react-router-dom";
+import { handleAddAnswer } from "../actions/questions";
 
 const PollPage = ({ dispatch, authedUser, author, question }) => {
   const navigate = useNavigate();
 
+  if (!authedUser || !question || !author) {
+    return <Navigate to="/404" />;
+  }
+
   const handleFirstChoice = (e) => {
     e.preventDefault();
-    dispatch(handleAddQuestionAnswer(question.id, "optionOne"));
+    dispatch(handleAddAnswer(question.id, "optionOne"));
     navigate("/");
   };
 
   const handleSecondChoice = (e) => {
     e.preventDefault();
-    dispatch(handleAddQuestionAnswer(question.id, "optionTwo"));
+    dispatch(handleAddAnswer(question.id, "optionTwo"));
     navigate("/");
   };
 
@@ -108,7 +112,7 @@ const mapStateToProps = ({ authedUser, users, questions }) => {
     );
     return { authedUser, author, question };
   } catch (error) {
-    throw new Error(`Question or user not found. ${error}`);
+    return <Navigate to="/404" />;
   }
 };
 

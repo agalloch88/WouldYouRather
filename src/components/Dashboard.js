@@ -17,7 +17,6 @@ const Dashboard = ({ authedUser, questions, users }) => {
       <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {questions.filter(unanswered).map((question) => (
           <li key={question.id}>
-            {question.id}
             <PollCard question={question} author={users[question.author]} />
           </li>
         ))}
@@ -26,7 +25,6 @@ const Dashboard = ({ authedUser, questions, users }) => {
       <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {questions.filter(answered).map((question) => (
           <li key={question.id}>
-            {question.id}
             <PollCard question={question} author={users[question.author]} />
           </li>
         ))}

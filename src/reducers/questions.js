@@ -1,12 +1,12 @@
 import {
-  GET_QUESTIONS,
+  ADD_ANSWER_QUESTION,
   ADD_QUESTION,
-  ADD_QUESTION_ANSWER,
-} from "../actions/polls";
+  RECEIVE_QUESTIONS,
+} from "../actions/questions";
 
-export default function polls(state = {}, action) {
+export default function questions(state = {}, action) {
   switch (action.type) {
-    case GET_QUESTIONS:
+    case RECEIVE_QUESTIONS:
       return {
         ...state,
         ...action.questions,
@@ -16,16 +16,14 @@ export default function polls(state = {}, action) {
         ...state,
         [action.question.id]: action.question,
       };
-    case ADD_QUESTION_ANSWER:
+    case ADD_ANSWER_QUESTION:
       return {
         ...state,
         [action.qid]: {
           ...state[action.qid],
           [action.answer]: {
             ...state[action.qid][action.answer],
-            votes: state[action.qid][action.answer].votes.concat([
-              action.author,
-            ]),
+            votes: state[action.qid][action.answer].votes.concat(action.author),
           },
         },
       };

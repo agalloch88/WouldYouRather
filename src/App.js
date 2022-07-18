@@ -10,7 +10,6 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { Routes, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { handleInitialData } from "./actions/shared";
-import "./App.css";
 
 function App({ dispatch, loggedIn }) {
   useEffect(() => {
