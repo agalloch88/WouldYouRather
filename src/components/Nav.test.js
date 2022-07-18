@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { store } from "../store";
 import { BrowserRouter } from "react-router-dom";
@@ -10,7 +10,7 @@ describe("Nav", () => {
   it("should render the component", () => {
     store.dispatch(setAuthedUser({ id: "sarahedo", password: "" }));
 
-    const component = render(
+    const { component } = render(
       <Provider store={store}>
         <BrowserRouter>
           <Nav />
@@ -24,7 +24,7 @@ describe("Nav", () => {
   it("should display username of logged in user", () => {
     store.dispatch(setAuthedUser({ id: "sarahedo", password: "" }));
 
-    const component = render(
+    const { component } = render(
       <Provider store={store}>
         <BrowserRouter>
           <Nav />
@@ -32,7 +32,7 @@ describe("Nav", () => {
       </Provider>
     );
 
-    const userSpanElement = component.getByTestId("user");
+    const userSpanElement = component.screen.getByTestId("user");
     expect(userSpanElement.textContent).toBe("Current Signed In as: sarahedo");
   });
 });
