@@ -65,7 +65,7 @@ const PollPage = ({ dispatch, authedUser, author, question }) => {
               <p className="underline underline-offset-4 mb-3">Click</p>
             )}
             {hasVoted && (
-              <p>
+              <p className="text-xs">
                 Votes: {question.optionOne.votes.length} (
                 {votePercentage("optionOne", question)})
               </p>
@@ -86,7 +86,7 @@ const PollPage = ({ dispatch, authedUser, author, question }) => {
               <p className="underline underline-offset-4 mb-3">Click</p>
             )}
             {hasVoted && (
-              <p>
+              <p className="text-xs">
                 Votes: {question.optionTwo.votes.length} (
                 {votePercentage("optionTwo", question)})
               </p>

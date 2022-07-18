@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { handleLogin } from "../actions/authedUser";
 
-const Login = ({ dispatch }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+const Login = ({ dispatch, loggedIn }) => {
+  const [username, setUsername] = useState("sarahedo");
+  const [password, setPassword] = useState("password123");
 
   const handleUsername = (e) => {
     const value = e.target.value;
@@ -23,12 +22,17 @@ const Login = ({ dispatch }) => {
     dispatch(handleLogin(username, password));
     setUsername("");
     setPassword("");
-    navigate("/");
   };
+
+  if (loggedIn) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mt-9" data-testid="login-heading">Login</h1>
+      <h1 className="text-3xl font-bold mt-9" data-testid="login-heading">
+        Login
+      </h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label
@@ -80,4 +84,8 @@ const Login = ({ dispatch }) => {
   );
 };
 
-export default connect()(Login);
+const mapStateToProps = ({ authedUser }) => ({
+  loggedIn: !!authedUser,
+});
+
+export default connect(mapStateToProps)(Login);
