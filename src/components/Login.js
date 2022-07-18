@@ -26,7 +26,7 @@ const Login = ({ dispatch }) => {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mt-9">Login</h1>
+      <h1 className="text-3xl font-bold mt-9" data-testid="login-heading">Login</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label
