@@ -25,8 +25,8 @@ const { _saveQuestion } = require("./_DATA");
 describe("_saveQuestion", () => {
   it("should return true for correct parameters", async () => {
     const response = await _saveQuestion({
-      optionOneText: "optionOneText",
-      optionTwoText: "optionTwoText",
+      optionOne: "optionOneText",
+      optionTwo: "optionTwoText",
       author: "sarahedo",
     }).catch((e) => e);
 
@@ -35,8 +35,8 @@ describe("_saveQuestion", () => {
 
   it("should return error for false parameters", async () => {
     const response = await _saveQuestion({
-      optionOneText: undefined,
-      optionTwoText: undefined,
+      optionOne: undefined,
+      optionTwo: undefined,
       author: undefined,
     }).catch((e) => e);
 
