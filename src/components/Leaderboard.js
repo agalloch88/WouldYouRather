@@ -12,6 +12,9 @@ const Leaderboard = ({ users }) => {
               User
             </th>
             <th className="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-600 dark:text-slate-200 text-left">
+              Total Questions
+            </th>
+            <th className="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-600 dark:text-slate-200 text-left">
               Questions Answered
             </th>
             <th className="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-600 dark:text-slate-200 text-left">
@@ -33,6 +36,9 @@ const Leaderboard = ({ users }) => {
                     alt="Author"
                   />
                 </div>
+              </td>
+              <td className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
+                {user.questions.length + Object.keys(user.answers).length}
               </td>
               <td className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
                 {Object.keys(user.answers).length}
