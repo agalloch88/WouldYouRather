@@ -5,6 +5,16 @@ An Employee-driven Polls app.
 This app allows users to impersonate employees listed in the _DATA.js file, and create polls. Users can also vote on polls, and see the results. There is a
 Leaderboard, showing the top users.
 
+# Project Setup
+
+    open your terminal and navigate to the directory where you want to create your project.
+    clone the repository using your preferred method (HTTPS/SSH)
+    cd into the directory you just cloned to
+    run the following commands to install all the dependencies and start the project:
+    `npm install
+    npm run start`
+    you should see your default browser open to localhost:3000, and the app should be running.
+
 # Getting Started with Create React App and Redux
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
